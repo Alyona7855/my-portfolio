@@ -458,6 +458,9 @@ section {
     padding: 10px;
     border-radius: 7px;
   }
+  .features h1 {
+    font-size: 50px;
+  }
   .contact-form {
     gap: 10px;
   }
