@@ -6,6 +6,7 @@
 	<title>Сайт преподавателя | Межевова Алёна</title>
 	<link rel="stylesheet" href="css/reset.css">
 	<link rel="stylesheet" href="css/style.css">
+	<link rel="icon" type="image/x-icon" href="&#128156;">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 	<style>
 		html {
@@ -163,7 +164,7 @@
 
   <section id="contact" class="contact hidden">
 		<div class="container">
-			<form class="contact-form">
+			<form class="contact-form" action="https://formspree.io/f/mvzwqejk" method="POST">
 				<h2>Связаться со мной</h2>
 				<p>Если у вас есть вопросы или предложения по сотрудничеству — напишите сообщение.</p>
 				<label for="name">Имя</label>
@@ -174,7 +175,6 @@
 				<textarea id="message" name="message" rows="5" placeholder="Ваше сообщение" required></textarea>
 				<button type="submit">Отправить</button>
 			</form>
-
 			<div class="contact__card">
 				<div class="contact__card__left">
 					<i class="fab fa-telegram"></i>
@@ -199,7 +199,20 @@
 	</footer>
 
 	<script>
-		const menuButtons =
+		document.querySelector('.contact-form').addEventListener('submit', async function(e) {
+		e.preventDefault();
+		const form = this;
+		const response = await fetch(form.action, {
+			method: "POST",
+			body: new FormData(form),
+			headers: {'Accept': 'application/json'}
+		});
+		if (response.ok) {
+			alert('Сообщение отправлено!');
+			form.reset();
+		}
+		});
+				const menuButtons =
 			document.querySelectorAll('.menu__ul .anchor');
 		const sections =
 			document.querySelectorAll('section');
